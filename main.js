@@ -1,3 +1,5 @@
+// MALDONADO M2 Q3
+
 import * as THREE from 'three';
 
 const scene = new THREE.Scene();
@@ -23,12 +25,10 @@ velocityY *= Math.random() < 0.5 ? -1 : 1;
 
 let bounces = 0;
 
-// Function to get a random color
 function getRandomColor() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
 
-// Function to dynamically calculate screen boundaries based on camera's view
 function calculateScreenBoundaries() {
     const frustumHeight = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2) * camera.position.z;
     const frustumWidth = frustumHeight * (renderer.domElement.width / renderer.domElement.height);
@@ -47,10 +47,8 @@ function animate() {
 
     const boundaries = calculateScreenBoundaries();
 
-    // Dynamically calculate the cube's current half size based on its scale
-    const dynamicHalfSize = 0.5 * object.scale.x;  // Assuming uniform scaling
+    const dynamicHalfSize = 0.5 * object.scale.x;  
 
-    // Boundary collision detection considering current size of the cube
     if (object.position.x + dynamicHalfSize >= boundaries.maxX || object.position.x - dynamicHalfSize <= boundaries.minX) {
         velocityX = -velocityX;
         handleBounce();
